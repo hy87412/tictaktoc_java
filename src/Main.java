@@ -7,19 +7,56 @@ import java.util.Scanner;
 public class Main {
     static final int tttboard_size = 3;
     static int[][] tttboard = new int[3][3];
+    static int rounds = 1;
+    static int breaktogle = 0;
 
     public static void main(String[] args) {
         resettttboard();
         while (true) {
-            printtttboard();
-            userinputandchange(1);
-            printtttboard();
-            userinputandchange(0);
-
+            gamemoperate();
         }
     }
-    static void gamemanager() {
-
+    static void gamemoperate() {
+        int winner = 2;
+        resettttboard();
+        rounds = 1;
+        breaktogle = 0;
+        while (true) {
+            printtttboard();
+            System.out.println("player o's turn");
+            userinputandchange(1);
+            if (breaktogle == 1) {
+                System.out.println("game was broken");
+                break;
+            }
+            winner = statuscheck();
+            needresetchecker();
+            if (winner == 1) {
+                System.out.println("player o win");
+                break;
+            }
+            else if (winner == 0) {
+                System.out.println("player x win");
+                break;
+            }
+            printtttboard();
+            System.out.println("player x's turn");
+            userinputandchange(1);
+            if (breaktogle == 1) {
+                System.out.println("game was broken");
+                break;
+            }
+            winner = statuscheck();
+            needresetchecker();
+            if (winner == 1) {
+                System.out.println("player o win");
+                break;
+            }
+            else if (winner == 0) {
+                System.out.println("player x win");
+                break;
+            }
+        }
     }
 
     static void resettttboard() {
@@ -50,6 +87,9 @@ public class Main {
                     System.out.println("빈칸에다 입력하세요");
                 }
             }
+            else if (row == 87412 || column == 87412) {
+                breaktogle = 1;
+            }
             else {
                 System.out.println("행 열 꼴로 1에서 3사이에 정수를 입력하세요");
             }
@@ -57,6 +97,7 @@ public class Main {
     }
 
     static void printtttboard() {
+        System.out.printf("rounds [%d]", rounds);
         System.out.println("\t1\t2\t3");
         for (int row = 0; row <= tttboard_size - 1; row++) {
             System.out.print(row + 1);
@@ -157,6 +198,7 @@ public class Main {
         }
         if (caser == 0) {
             resettttboard();
+            rounds ++;
         }
     }
 
