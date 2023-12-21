@@ -88,12 +88,14 @@ public class Main {
                     System.out.println("빈칸에다 입력하세요");
                 }
             }
+            else if (row == 87412 || column == 87412) {
+                breaktogle = 1;
+                break;
+            }
             else {
                 System.out.println("행 열 꼴로 1에서 3사이에 정수를 입력하세요");
             }
-            if (row == 87412 || column == 87412) {
-                breaktogle =restarted
-            }
+
         }
     }
 
