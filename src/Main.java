@@ -110,7 +110,7 @@ public class Main {
                     System.out.print("\tX");
                 }
                 else {
-                    System.out.print("\tN");
+                    System.out.print("\t▇");
                 }
             }
             System.out.println();
