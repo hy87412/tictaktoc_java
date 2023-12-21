@@ -9,6 +9,7 @@ public class Main {
     static int[][] tttboard = new int[3][3];
     static int rounds = 1;
     static int breaktogle = 0;
+    static int winner;
 
     public static void main(String[] args) {
         resettttboard();
@@ -17,7 +18,7 @@ public class Main {
         }
     }
     static void gameoperate() {
-        int winner = 2;
+        winner = 2;
         resettttboard();
         rounds = 1;
         breaktogle = 0;
@@ -29,8 +30,7 @@ public class Main {
                 System.out.println("game was broken");
                 break;
             }
-            winner = statuscheck();
-            needresetchecker();
+            statuscheck();
             if (winner == 1) {
                 System.out.println("player o win");
                 break;
@@ -39,6 +39,7 @@ public class Main {
                 System.out.println("player x win");
                 break;
             }
+            needresetchecker();
             printtttboard();
             System.out.println("player x's turn");
             userinputandchange(0);
@@ -46,8 +47,7 @@ public class Main {
                 System.out.println("game was broken");
                 break;
             }
-            winner = statuscheck();
-            needresetchecker();
+            statuscheck();
             if (winner == 1) {
                 System.out.println("player o win");
                 break;
@@ -56,6 +56,7 @@ public class Main {
                 System.out.println("player x win");
                 break;
             }
+            needresetchecker();
         }
     }
 
@@ -117,7 +118,6 @@ public class Main {
     }
 
     static int statuscheck() {
-        int winner = 2;
         if (tttboard[0][0] != 2) {
             if (tttboard[0][0] == 1) {
                 if (linechecker(tttboard[0][0], tttboard[0][1], tttboard[0][2]) == 1) {
@@ -136,7 +136,7 @@ public class Main {
                 }
             }
         }
-        else if (tttboard[1][1] != 2) {
+        if (tttboard[1][1] != 2) {
             if (tttboard[1][1] == 1) {
                 if (linechecker(tttboard[0][0], tttboard[1][1], tttboard[2][2]) == 1) {
                     winner = 1;
@@ -166,7 +166,7 @@ public class Main {
                 }
             }
         }
-        else if (tttboard[2][2] != 2) {
+        if (tttboard[2][2] != 2) {
             if (tttboard[2][2] == 1) {
                 if (linechecker(tttboard[2][0], tttboard[2][1], tttboard[2][2]) == 1) {
                     winner = 1;
@@ -191,7 +191,7 @@ public class Main {
         int caser = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (tttboard[i][j] != 2) {
+                if (tttboard[i][j] == 2) {
                     caser++;
                 }
             }
