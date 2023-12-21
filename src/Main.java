@@ -1,6 +1,10 @@
 import java.util.Scanner;
+/*
+* 2 = null
+* 1 = player o
+* 2 = player x
+*/
 public class Main {
-    //board
     static final int tttboard_size = 3;
     static int[][] tttboard = new int[3][3];
 
@@ -11,9 +15,12 @@ public class Main {
             userinputandchange(1);
             printtttboard();
             userinputandchange(0);
+
         }
     }
+    static void gamemanager() {
 
+    }
 
     static void resettttboard() {
         for (int row = 0; row <= tttboard_size - 1; row++) {
@@ -68,7 +75,96 @@ public class Main {
         }
     }
 
-    static void tttgameplay() {
+    static int statuscheck() {
+        int winner = 2;
+        if (tttboard[1][1] != 2) {
+            if (tttboard[1][1] == 1) {
+                if (linechecker(tttboard[1][1], tttboard[1][2], tttboard[1][3]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[1][1], tttboard[2][1], tttboard[3][1]) == 1) {
+                    winner = 1;
+                }
+            }
+            else if (tttboard[1][1] == 0) {
+                if (linechecker(tttboard[1][1], tttboard[1][2], tttboard[1][3]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[1][1], tttboard[2][1], tttboard[3][1]) == 1) {
+                    winner = 0;
+                }
+            }
+        }
+        else if (tttboard[2][2] != 2) {
+            if (tttboard[2][2] == 1) {
+                if (linechecker(tttboard[1][1], tttboard[2][2], tttboard[3][3]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[3][1], tttboard[2][2], tttboard[1][3]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[1][2], tttboard[2][2], tttboard[3][2]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[2][1], tttboard[2][2], tttboard[2][3]) == 1) {
+                    winner = 1;
+                }
+            }
+            else if (tttboard[2][2] == 0) {
+               if (linechecker(tttboard[1][1], tttboard[2][2], tttboard[3][3]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[3][1], tttboard[2][2], tttboard[1][3]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[1][2], tttboard[2][2], tttboard[3][2]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[2][1], tttboard[2][2], tttboard[2][3]) == 1) {
+                    winner = 0;
+                }
+            }
+        }
+        else if (tttboard[3][3] != 2) {
+            if (tttboard[3][3] == 1) {
+                if (linechecker(tttboard[3][1], tttboard[3][2], tttboard[3][3]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[1][3], tttboard[2][3], tttboard[3][3]) == 1) {
+                    winner = 1;
+                }
+            }
+            else if (tttboard[3][3] == 0) {
+                if (linechecker(tttboard[3][1], tttboard[3][2], tttboard[3][3]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[1][3], tttboard[2][3], tttboard[3][3]) == 1) {
+                    winner = 0;
+                }
+            }
+        }
+        return winner;
+    }
 
+    static void needresetchecker() {
+        int caser = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tttboard[i][j] != 2) {
+                    caser++;
+                }
+            }
+        }
+        if (caser == 0) {
+            resettttboard();
+        }
+    }
+
+    static int linechecker(int A, int B, int C) {
+        int result = 0;
+        if ((A == B) && (B == C) && (C == A)) {
+            result = 1;
+        }
+        return result;
     }
 }
