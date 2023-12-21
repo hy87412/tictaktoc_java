@@ -13,10 +13,10 @@ public class Main {
     public static void main(String[] args) {
         resettttboard();
         while (true) {
-            gamemoperate();
+            gameoperate();
         }
     }
-    static void gamemoperate() {
+    static void gameoperate() {
         int winner = 2;
         resettttboard();
         rounds = 1;
@@ -41,7 +41,7 @@ public class Main {
             }
             printtttboard();
             System.out.println("player x's turn");
-            userinputandchange(1);
+            userinputandchange(0);
             if (breaktogle == 1) {
                 System.out.println("game was broken");
                 break;
@@ -97,7 +97,7 @@ public class Main {
     }
 
     static void printtttboard() {
-        System.out.printf("rounds [%d]", rounds);
+        System.out.printf("rounds [%d]\n", rounds);
         System.out.println("\t1\t2\t3");
         for (int row = 0; row <= tttboard_size - 1; row++) {
             System.out.print(row + 1);
@@ -118,68 +118,68 @@ public class Main {
 
     static int statuscheck() {
         int winner = 2;
-        if (tttboard[1][1] != 2) {
-            if (tttboard[1][1] == 1) {
-                if (linechecker(tttboard[1][1], tttboard[1][2], tttboard[1][3]) == 1) {
+        if (tttboard[0][0] != 2) {
+            if (tttboard[0][0] == 1) {
+                if (linechecker(tttboard[0][0], tttboard[0][1], tttboard[0][2]) == 1) {
                     winner = 1;
                 }
-                else if (linechecker(tttboard[1][1], tttboard[2][1], tttboard[3][1]) == 1) {
+                else if (linechecker(tttboard[0][0], tttboard[1][0], tttboard[2][0]) == 1) {
+                    winner = 1;
+                }
+            }
+            else if (tttboard[0][0] == 0) {
+                if (linechecker(tttboard[0][0], tttboard[0][1], tttboard[0][2]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[0][0], tttboard[1][0], tttboard[2][0]) == 1) {
+                    winner = 0;
+                }
+            }
+        }
+        else if (tttboard[1][1] != 2) {
+            if (tttboard[1][1] == 1) {
+                if (linechecker(tttboard[0][0], tttboard[1][1], tttboard[2][2]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[2][0], tttboard[1][1], tttboard[0][2]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[0][1], tttboard[1][1], tttboard[2][1]) == 1) {
+                    winner = 1;
+                }
+                else if (linechecker(tttboard[1][0], tttboard[1][1], tttboard[1][2]) == 1) {
                     winner = 1;
                 }
             }
             else if (tttboard[1][1] == 0) {
-                if (linechecker(tttboard[1][1], tttboard[1][2], tttboard[1][3]) == 1) {
+               if (linechecker(tttboard[0][0], tttboard[1][1], tttboard[2][2]) == 1) {
                     winner = 0;
                 }
-                else if (linechecker(tttboard[1][1], tttboard[2][1], tttboard[3][1]) == 1) {
+                else if (linechecker(tttboard[2][0], tttboard[1][1], tttboard[0][2]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[0][1], tttboard[1][1], tttboard[2][1]) == 1) {
+                    winner = 0;
+                }
+                else if (linechecker(tttboard[1][0], tttboard[1][1], tttboard[1][2]) == 1) {
                     winner = 0;
                 }
             }
         }
         else if (tttboard[2][2] != 2) {
             if (tttboard[2][2] == 1) {
-                if (linechecker(tttboard[1][1], tttboard[2][2], tttboard[3][3]) == 1) {
+                if (linechecker(tttboard[2][0], tttboard[2][1], tttboard[2][2]) == 1) {
                     winner = 1;
                 }
-                else if (linechecker(tttboard[3][1], tttboard[2][2], tttboard[1][3]) == 1) {
-                    winner = 1;
-                }
-                else if (linechecker(tttboard[1][2], tttboard[2][2], tttboard[3][2]) == 1) {
-                    winner = 1;
-                }
-                else if (linechecker(tttboard[2][1], tttboard[2][2], tttboard[2][3]) == 1) {
+                else if (linechecker(tttboard[0][2], tttboard[1][2], tttboard[2][2]) == 1) {
                     winner = 1;
                 }
             }
             else if (tttboard[2][2] == 0) {
-               if (linechecker(tttboard[1][1], tttboard[2][2], tttboard[3][3]) == 1) {
+                if (linechecker(tttboard[2][0], tttboard[2][1], tttboard[2][2]) == 1) {
                     winner = 0;
                 }
-                else if (linechecker(tttboard[3][1], tttboard[2][2], tttboard[1][3]) == 1) {
-                    winner = 0;
-                }
-                else if (linechecker(tttboard[1][2], tttboard[2][2], tttboard[3][2]) == 1) {
-                    winner = 0;
-                }
-                else if (linechecker(tttboard[2][1], tttboard[2][2], tttboard[2][3]) == 1) {
-                    winner = 0;
-                }
-            }
-        }
-        else if (tttboard[3][3] != 2) {
-            if (tttboard[3][3] == 1) {
-                if (linechecker(tttboard[3][1], tttboard[3][2], tttboard[3][3]) == 1) {
-                    winner = 1;
-                }
-                else if (linechecker(tttboard[1][3], tttboard[2][3], tttboard[3][3]) == 1) {
-                    winner = 1;
-                }
-            }
-            else if (tttboard[3][3] == 0) {
-                if (linechecker(tttboard[3][1], tttboard[3][2], tttboard[3][3]) == 1) {
-                    winner = 0;
-                }
-                else if (linechecker(tttboard[1][3], tttboard[2][3], tttboard[3][3]) == 1) {
+                else if (linechecker(tttboard[0][2], tttboard[1][2], tttboard[2][2]) == 1) {
                     winner = 0;
                 }
             }
