@@ -100,7 +100,7 @@ public class Main {
     }
 
     static void printtttboard() {
-        System.out.printf("rounds [%d]\n", rounds);
+        System.out.printf("--------rounds [%d]--------\n", rounds);
         System.out.println("\t1\t2\t3");
         for (int row = 0; row <= tttboard_size - 1; row++) {
             System.out.print(row + 1);
@@ -112,7 +112,7 @@ public class Main {
                     System.out.print("\tX");
                 }
                 else {
-                    System.out.print("\t▇▇");
+                    System.out.print("\t■");
                 }
             }
             System.out.println();
