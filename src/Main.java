@@ -72,8 +72,8 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         int row, column;
         while (true) {
-            row = scan.nextInt();
-            column = scan.nextInt();
+            row = (int)scan.nextFloat();
+            column = (int)scan.nextFloat();
             if ((row >= 1 && row <= 3) && (column >= 1 && column <= 3)) {
                 if (2 == tttboard[row - 1][column - 1]) {
                     if (usertype == 1) {
